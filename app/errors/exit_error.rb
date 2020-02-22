@@ -1,0 +1,1 @@
+class ExitError < StandardError; end
