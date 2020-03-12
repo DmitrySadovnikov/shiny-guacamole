@@ -7,7 +7,8 @@ module Requests
       case action
       when :exit then raise ExitError
       when :place then Robots::Place.call(*args)
-      when :move, :left, :right, :report then robot_requests(action)
+      when :place_obstacle then Obstacles::Place.call(*args)
+      when :move, :left, :right, :report, :find_path, :path_commands then robot_requests(action, args)
       else raise UnknownActionError
       end
     end

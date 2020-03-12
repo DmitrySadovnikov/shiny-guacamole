@@ -67,4 +67,13 @@ describe Requests::Process do
 
     it_behaves_like 'without current Robot'
   end
+
+  context 'with PLACE_OBSTACLE' do
+    let(:request) { 'PLACE_OBSTACLE 1,1' }
+
+    it 'calls Obstacles::Place' do
+      expect(Obstacles::Place).to receive(:call).with(1, 1)
+      subject
+    end
+  end
 end

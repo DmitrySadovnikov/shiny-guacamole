@@ -15,6 +15,10 @@ class Point
     errors.empty?
   end
 
+  def to_a
+    [x, y]
+  end
+
   private
 
   def validate
