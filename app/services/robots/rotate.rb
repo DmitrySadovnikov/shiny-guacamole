@@ -15,9 +15,12 @@ module Robots
 
     param :robot
     param :direction
+    option :facing, default: -> { robot.facing }
+    option :dry_run, optional: true
 
     def call
       return unless direction_degrees
+      return new_facing if dry_run
 
       robot.facing = new_facing
     end
@@ -38,7 +41,7 @@ module Robots
     end
 
     def facing_degrees
-      @facing_degrees ||= FACING_DEGREES[robot.facing]
+      @facing_degrees ||= FACING_DEGREES[facing]
     end
   end
 end

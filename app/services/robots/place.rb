@@ -6,6 +6,7 @@ module Robots
 
     def call
       return unless robot.valid?
+      return if Obstacles::Retrieve.call(point)
 
       Robot.current = robot
     end

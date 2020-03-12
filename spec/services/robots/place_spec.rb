@@ -21,11 +21,25 @@ describe Robots::Place do
     let(:y) { y }
     let(:facing) { facing }
 
-    it 'sets current Robot' do
+    it 'does not set Robot' do
       subject
       expect(Robot.current).to be_nil
     end
   end
+
+  context 'with obstacle' do
+    before { Obstacles::Place.call(1, 1) }
+
+    let(:x) { 1 }
+    let(:y) { 1 }
+    let(:facing) { :north }
+
+    it 'does not set Robot' do
+      subject
+      expect(Robot.current).to be_nil
+    end
+  end
+
 
   it_behaves_like 'when successful cases', 1, 1, :west
   it_behaves_like 'when failed cases', 1, 1, nil

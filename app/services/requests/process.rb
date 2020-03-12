@@ -15,7 +15,7 @@ module Requests
 
     private
 
-    def robot_requests(action)
+    def robot_requests(action, args)
       raise RobotNotPlacedError unless robot
 
       case action
@@ -23,6 +23,8 @@ module Requests
       when :left then Robots::Rotate.call(robot, :left)
       when :right then Robots::Rotate.call(robot, :right)
       when :report then puts Robots::Report.call(robot)
+      when :find_path then puts Robots::FindPath.call(robot, *args).map(&:to_s)
+      when :path_commands then puts Robots::PathCommands.call(robot, *args)
       end
     end
 

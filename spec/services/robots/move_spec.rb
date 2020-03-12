@@ -18,6 +18,18 @@ describe Robots::Move do
     end
   end
 
+  context 'with obstacle' do
+    before { Obstacles::Place.call(1, 1) }
+
+    let(:robot) { Robot.new(Point.new(1, 0), facing) }
+    let(:facing) { :north }
+
+    it 'returns point' do
+      subject
+      expect([robot.point.x, robot.point.y]).to eq([1, 0])
+    end
+  end
+
   it_behaves_like 'when successful cases', :north, [1, 1], [1, 2]
   it_behaves_like 'when successful cases', :east, [1, 1], [2, 1]
   it_behaves_like 'when successful cases', :south, [1, 1], [1, 0]
